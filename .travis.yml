@@ -40,6 +40,10 @@ matrix:
       env: DATABASE_ADAPTER=mysql2 DOCKER_IMAGE=huginn/huginn-single-process DOCKERFILE=docker/single-process/Dockerfile
     - rvm: 2.4.4
       env: DATABASE_ADAPTER=mysql2 DOCKER_IMAGE=huginn/huginn DOCKERFILE=docker/multi-process/Dockerfile
+    - rvm: 2.6.0
+      env: RSPEC_TASK=spec:features DATABASE_ADAPTER=mysql2
+    - rvm: 2.6.0
+      env: RSPEC_TASK=spec:features DATABASE_ADAPTER=postgresql DATABASE_USERNAME=postgres
     - rvm: 2.5.1
       env: RSPEC_TASK=spec:features DATABASE_ADAPTER=mysql2
     - rvm: 2.5.1
@@ -52,10 +56,13 @@ matrix:
       env: RSPEC_TASK=spec:features DATABASE_ADAPTER=mysql2
     - rvm: 2.3.7
       env: RSPEC_TASK=spec:features DATABASE_ADAPTER=postgresql DATABASE_USERNAME=postgres
+  allow_failures:
+    - rvm: 2.6.0
 rvm:
 - 2.3.7
 - 2.4.4
 - 2.5.1
+- 2.6.0
 cache: bundler
 bundler_args: --without development production
 script:
